@@ -1,0 +1,13 @@
+#bottom-only-border {
+    border-bottom-style: solid;
+}
+
+#inline {
+    display: inline
+}
+
+table, th, td {
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+  }
