@@ -77,54 +77,18 @@ static void *emcute_thread(void *arg)
     return NULL;    /* should never be reached */
 }
 
-static void on_pub(const emcute_topic_t *topic, void *data, size_t len)
+static int connect_publish(char* address, int port, char* topic_name, char* message, int qos)
 {
-    char *in = (char *)data;
-
-    printf("### got publication for topic '%s' [%i] ###\n",
-           topic->name, (int)topic->id);
-    for (size_t i = 0; i < len; i++) {
-        printf("%c", in[i]);
-    }
-    puts("");
-}
-
-static unsigned get_qos(const char *str)
-{
-    int qos = atoi(str);
-    switch (qos) {
-        case 1:     return EMCUTE_QOS_1;
-        case 2:     return EMCUTE_QOS_2;
-        default:    return EMCUTE_QOS_0;
-    }
-}
-
-static int connect(int argc, char **argv)
-{
+    //connect to gateway using its IP address and port
     sock_udp_ep_t gw = { .family = AF_INET6, .port = EMCUTE_PORT };
     char *topic = NULL;
     char *message = NULL;
     size_t len = 0;
 
-    if (argc < 2) {
-        printf("usage: %s <ipv6 addr> [port] [<will topic> <will message>]\n",
-                argv[0]);
-        return 1;
-    }
-
     /* parse address */
-    if (ipv6_addr_from_str((ipv6_addr_t *)&gw.addr.ipv6, argv[1]) == NULL) {
+    if (ipv6_addr_from_str((ipv6_addr_t *)&gw.addr.ipv6, address) == NULL) {
         printf("error parsing IPv6 address\n");
         return 1;
-    }
-
-    if (argc >= 3) {
-        gw.port = atoi(argv[2]);
-    }
-    if (argc >= 5) {
-        topic = argv[3];
-        message = argv[4];
-        len = strlen(message);
     }
 
     if (emcute_con(&gw, true, topic, message, len, 0) != EMCUTE_OK) {
@@ -132,16 +96,35 @@ static int connect(int argc, char **argv)
         return 1;
     }
     printf("Successfully connected to gateway at [%s]:%i\n",
-           argv[1], (int)gw.port);
+           address, port);
 
-    return 0;
-}
+    //publish
+    emcute_topic_t t;
+    unsigned flags = EMCUTE_QOS_0;
 
-static int disconnect(int argc, char **argv)
-{
-    (void)argc;
-    (void)argv;
+    printf("publishing %s on topic %s\n", topic_name, message);
 
+    /* step 1: get topic id and QoS level*/
+    t.name = topic_name;
+    if (emcute_reg(&t) != EMCUTE_OK) {
+        puts("error: unable to obtain topic ID");
+        return 1;
+    }
+    if(qos == 1)
+        flags = EMCUTE_QOS_1;
+    else if (qos == 2)
+        flags = EMCUTE_QOS_2;
+
+    /* step 2: publish data */
+    if (emcute_pub(&t, message, strlen(message), flags) != EMCUTE_OK) {
+        printf("error: unable to publish data to topic '%s [%i]'\n",
+                t.name, (int)t.id);
+        return 1;
+    }
+
+    printf("published %s on topic %s\n", t.name, message);
+
+    //disconnect
     int res = emcute_discon();
     if (res == EMCUTE_NOGW) {
         puts("error: not connected to any broker");
@@ -153,131 +136,8 @@ static int disconnect(int argc, char **argv)
     }
     puts("Disconnect successful");
     return 0;
+
 }
-
-static int publish(int argc, char **argv)
-{
-    emcute_topic_t t;
-    unsigned flags = EMCUTE_QOS_0;
-
-    if (argc < 3) {
-        printf("usage: %s <topic name> <data> [QoS level]\n", argv[0]);
-        return 1;
-    }
-
-    /* parse QoS level */
-    if (argc >= 4) {
-        flags |= get_qos(argv[3]);
-    }
-
-    printf("pub with topic: %s and name %s and flags 0x%02x\n", argv[1], argv[2], (int)flags);
-
-    /* step 1: get topic id */
-    t.name = argv[1];
-    if (emcute_reg(&t) != EMCUTE_OK) {
-        puts("error: unable to obtain topic ID");
-        return 1;
-    }
-
-    /* step 2: publish data */
-    if (emcute_pub(&t, argv[2], strlen(argv[2]), flags) != EMCUTE_OK) {
-        printf("error: unable to publish data to topic '%s [%i]'\n",
-                t.name, (int)t.id);
-        return 1;
-    }
-
-    printf("Published %i bytes to topic '%s [%i]'\n",
-            (int)strlen(argv[2]), t.name, t.id);
-
-    return 0;
-}
-
-static int subscribe(int argc, char **argv)
-{
-    unsigned flags = EMCUTE_QOS_0;
-
-    if (argc < 2) {
-        printf("usage: %s <topic name> [QoS level]\n", argv[0]);
-        return 1;
-    }
-
-    if (strlen(argv[1]) > TOPIC_MAXLEN) {
-        puts("error: topic name exceeds maximum possible size");
-        return 1;
-    }
-    if (argc >= 3) {
-        flags |= get_qos(argv[2]);
-    }
-
-    /* find empty subscription slot */
-    unsigned i = 0;
-    for (; (i < NUMOFSUBS) && (subscriptions[i].topic.id != 0); i++) {}
-    if (i == NUMOFSUBS) {
-        puts("error: no memory to store new subscriptions");
-        return 1;
-    }
-
-    subscriptions[i].cb = on_pub;
-    strcpy(topics[i], argv[1]);
-    subscriptions[i].topic.name = topics[i];
-    if (emcute_sub(&subscriptions[i], flags) != EMCUTE_OK) {
-        printf("error: unable to subscribe to %s\n", argv[1]);
-        return 1;
-    }
-
-    printf("Now subscribed to %s\n", argv[1]);
-    return 0;
-}
-
-static int unsubscribe(int argc, char **argv)
-{
-    if (argc < 2) {
-        printf("usage %s <topic name>\n", argv[0]);
-        return 1;
-    }
-
-    /* find subscriptions entry */
-    for (unsigned i = 0; i < NUMOFSUBS; i++) {
-        if (subscriptions[i].topic.name &&
-            (strcmp(subscriptions[i].topic.name, argv[1]) == 0)) {
-            if (emcute_unsub(&subscriptions[i]) == EMCUTE_OK) {
-                memset(&subscriptions[i], 0, sizeof(emcute_sub_t));
-                printf("Unsubscribed from '%s'\n", argv[1]);
-            }
-            else {
-                printf("Unsubscription form '%s' failed\n", argv[1]);
-            }
-            return 0;
-        }
-    }
-
-    printf("error: no subscription for topic '%s' found\n", argv[1]);
-    return 1;
-}
-
-static int set_will(int argc, char **argv)
-{
-    if (argc < 3) {
-        printf("usage %s <will topic name> <will message content>\n", argv[0]);
-        return 1;
-    }
-
-    if (emcute_willupd_topic(argv[1], 0) != EMCUTE_OK) {
-        puts("error: unable to update the last will topic");
-        return 1;
-    }
-    if (emcute_willupd_msg(argv[2], strlen(argv[2])) != EMCUTE_OK) {
-        puts("error: unable to update the last will message");
-        return 1;
-    }
-
-    puts("Successfully updated last will topic and message");
-    return 0;
-}
-
-/*static const shell_command_t base_shell_commands[] = {
-        { NULL, NULL, NULL }
-};*/
 
 static int cmd_init_start(int argc, char **argv)
 {
@@ -294,11 +154,11 @@ static int cmd_init_start(int argc, char **argv)
     int broker_port;
     sprintf(broker_ip_address,"%s",argv[2]);
     broker_port = atoi(argv[3]);
-    printf("Attempting connection to broker %s:%d\n",broker_ip_address,broker_port);
+    /*printf("Attempting connection to broker %s:%d\n",broker_ip_address,broker_port);
     while(connect(broker_ip_address, broker_port)!=0){
         printf("Connection failed. Retrying...\n");
         sleep(5);
-    }
+    }*/
 
     while(1){
         update_sensor_values(&local_station);
@@ -308,6 +168,8 @@ static int cmd_init_start(int argc, char **argv)
         strftime(latest_timestamp,sizeof(latest_timestamp),"%FT%T",lt);
         sprintf(latest_read_json,"{\"id\": \"%s\", \"time\": \"%s\", \"temperature\": \"%d\", \"humidity\": \"%d\", \"wind_direction\": \"%d\", \"wind_intensity\": \"%d\", \"rain_height\": \"%d\"}",local_station.id, latest_timestamp, local_station.temperature, local_station.humidity, local_station.wind_direction, local_station.wind_intensity, local_station.rain_height);
         printf("%s\n",latest_read_json);
+        connect_publish(broker_ip_address, broker_port,"sensor_values", latest_read_json, 0);
+        /*publish("sensor_values",latest_read_json,0);*/
         sleep(10);
     }
     return 0;
