@@ -41,10 +41,8 @@
 
 static char stack[THREAD_STACKSIZE_DEFAULT];
 static msg_t queue[8];
-static int dev_init = 0;
 
 static emcute_sub_t subscriptions[NUMOFSUBS];
-static char topics[NUMOFSUBS][TOPIC_MAXLEN];
 
 typedef struct {
     char id[20];
@@ -80,19 +78,18 @@ static void *emcute_thread(void *arg)
 static int connect_publish(char* address, int port, char* topic_name, char* message, int qos)
 {
     //connect to gateway using its IP address and port
-    sock_udp_ep_t gw = { .family = AF_INET6, .port = EMCUTE_PORT };
-    char *topic = NULL;
-    char *message = NULL;
-    size_t len = 0;
-
+    sock_udp_ep_t gw = { .family = AF_INET6, .port = port };
+    
     /* parse address */
+    printf("Parsing address\n");
     if (ipv6_addr_from_str((ipv6_addr_t *)&gw.addr.ipv6, address) == NULL) {
         printf("error parsing IPv6 address\n");
         return 1;
     }
 
-    if (emcute_con(&gw, true, topic, message, len, 0) != EMCUTE_OK) {
-        printf("error: unable to connect to [%s]:%i\n", argv[1], (int)gw.port);
+    printf("Trying connection\n");
+    if (emcute_con(&gw, true, NULL, NULL, 0, 0) != EMCUTE_OK) {
+        printf("error: unable to connect to [%s]:%i\n", address, (int)gw.port);
         return 1;
     }
     printf("Successfully connected to gateway at [%s]:%i\n",
@@ -102,7 +99,7 @@ static int connect_publish(char* address, int port, char* topic_name, char* mess
     emcute_topic_t t;
     unsigned flags = EMCUTE_QOS_0;
 
-    printf("publishing %s on topic %s\n", topic_name, message);
+    printf("publishing %s on topic %s\n", message, topic_name);
 
     /* step 1: get topic id and QoS level*/
     t.name = topic_name;
@@ -122,7 +119,7 @@ static int connect_publish(char* address, int port, char* topic_name, char* mess
         return 1;
     }
 
-    printf("published %s on topic %s\n", t.name, message);
+    printf("published %s on topic %s\n", message, t.name);
 
     //disconnect
     int res = emcute_discon();
