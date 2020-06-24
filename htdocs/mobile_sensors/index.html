@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="../style.css">
+        <title>User Activity Recognition</title>
+    </head>
+    <body>
+        <script src="main.js"></script>
+        <div id="bottom-only-border">
+            <h1>User Activity Recognition</h1>
+        </div>
+        <div id="bottom-only-border">
+            <p>Recognition engine:</p>
+            <form name="startStop" method="POST" action="javascript:start()">
+                <select name="engine">
+                    <option value="edge">Edge (local)</option>
+                    <option value="cloud">Cloud (remote)</option>
+                </select>
+                <input type="submit" name="start" value="Start">
+                <input type="submit" name="stop" value="Stop">
+            </form>
+        </div>
+        <h2 id="activity"></h2>
+        <button name="stop" onclick="stop()">Stop</button>
+    </body>
+</html>
