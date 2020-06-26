@@ -1,5 +1,6 @@
 var state
 var i=0
+var sensor
 
 function form_handler()
 {}
