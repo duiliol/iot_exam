@@ -10,15 +10,13 @@
         </div>
         <div id="bottom-only-border">
             <p>Recognition engine:</p>
-            <form name="startStop" method="POST" action="javascript:start()">
-                <select name="engine">
-                    <option value="edge">Edge (local)</option>
-                    <option value="cloud">Cloud (remote)</option>
-                </select>
-                <input type="submit" name="start" value="Start">
-            </form>
+            <p>
+                <button id="edgeButton" onclick="startEdge()">Edge (local)</button>
+                <button id="cloudButton" onclick="startCloud()">Cloud (remote)</button>
+            </p>
         </div>
-        <h2 id="activity"></h2>
+        <h2 id="activityHeader"></h2>
+        <h3 id="activity"></h3>
         <button name="stop" onclick="stop()">Stop</button>
     </body>
 </html>
