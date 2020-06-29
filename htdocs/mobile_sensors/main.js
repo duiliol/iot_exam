@@ -1,6 +1,15 @@
 var state
 var i=0
 var sensor
+var hostname = "192.168.1.191"
+var port = "1883"
+var clientId = ""
+var mqttClient = new Paho.MQTT.Client(hostname, port, clientId);
+mqttClient.onMessageArrived = messageArrived;
+
+function messageArrived(message){
+
+}
 
 function form_handler()
 {}
