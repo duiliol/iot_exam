@@ -4,11 +4,14 @@
         <title>User Activity Recognition</title>
     </head>
     <body>
+        <script src="aws-sdk-2.7.16.min.js"></script>
+        <script src="paho-mqtt.js"></script>
         <script src="main.js"></script>
         <div id="bottom-only-border">
             <h1>User Activity Recognition</h1>
         </div>
         <div id="bottom-only-border">
+            <p>ID: <input id="mobile_id" type="text"></input> (leave empty to randomly generate)</p>
             <p>Recognition engine:</p>
             <p>
                 <button id="edgeButton" onclick="startEdge()">Edge (local)</button>
