@@ -14,7 +14,7 @@
 
     print("<html>");
         print("<head>");
-            print("<link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">");
+            print("<link rel=\"stylesheet\" type=\"text/css\" href=\"../style.css\">");
             print("<title>Mobile Sensors Dashboard</title>");
         print("</head>");
     
@@ -22,7 +22,7 @@
         print("<h1>IoT Mobile Sensors Dashboard</h1>");
         print("</div>");
 
-        $rec_vals_file = fopen("../python_mobile_dash_backend/received_values.txt", "r") or die("Unable to open received values file!");
+        $rec_vals_file = fopen("../../python_mobile_dash_backend/received_values.txt", "r") or die("Unable to open received values file!");
 
         $stations = array();
             while (($line = fgets($rec_vals_file)) !== false) {
@@ -32,7 +32,7 @@
                 }
             }
         
-        $rec_vals_file = fopen("../python_mobile_dash_backend/received_values.txt", "r") or die("Unable to open received values file!");
+        $rec_vals_file = fopen("../../python_mobile_dash_backend/received_values.txt", "r") or die("Unable to open received values file!");
 
         $sensors = array();
         $line = fgets($rec_vals_file);
@@ -48,7 +48,7 @@
         fclose($rec_vals_file);
         
         print("<h2>Current view: </h2>");
-        print("<form action=\"index.php\" method=\"post\">");
+        print("<form action=\"dashboard.php\" method=\"post\">");
             print("<select name=\"view\">");
                 print("<option value=\"latest\"");
                 if(isset($_SESSION["view"]) and ($_SESSION["view"])=="latest"){
@@ -68,7 +68,7 @@
         {
             print("<div id=\"bottom-only-border\">");
             print("<h3>Selected station: </h3>");
-                print("<form action=\"index.php\" method=\"post\">");
+                print("<form action=\"dashboard.php\" method=\"post\">");
                 print("<select name=\"station\">");
                 for ($i = 0; $i < count($stations); $i++) {
                     print("<option value=\"$stations[$i]\"");
@@ -87,7 +87,7 @@
         {
             print("<div id=\"bottom-only-border\">");
             print("<h3>Selected sensor: </h3>");
-                print("<form action=\"index.php\" method=\"post\">");
+                print("<form action=\"dashboard.php\" method=\"post\">");
                 print("<select name=\"sensor\">");
                 for ($i = 0; $i < count($sensors); $i++) {
                     print("<option value=\"$sensors[$i]\"");
@@ -111,7 +111,7 @@
                     print("</id>");
                     print("<table>");
                         print("<tr>");
-                        $rec_vals_file = fopen("../python_mobile_dash_backend/received_values.txt", "r") or die("Unable to open received values file!");
+                        $rec_vals_file = fopen("../../python_mobile_dash_backend/received_values.txt", "r") or die("Unable to open received values file!");
                         $line = fgets($rec_vals_file);
                         if($line !== false) {
                             $json_decoded_line = json_decode($line, true);
@@ -120,7 +120,7 @@
                             }
                         }
                         print("</tr>");
-                        $rec_vals_file = fopen("../python_mobile_dash_backend/received_values.txt", "r") or die("Unable to open received values file!");
+                        $rec_vals_file = fopen("../../python_mobile_dash_backend/received_values.txt", "r") or die("Unable to open received values file!");
                         while (($line = fgets($rec_vals_file)) !== false) {
                         $json_decoded_line = json_decode($line, true);
                             if($json_decoded_line['id']==$_SESSION['station']){
@@ -151,7 +151,7 @@
                                 print($_SESSION['sensor']);
                                 print("</th>");
                         print("</tr>");
-                        $rec_vals_file = fopen("../python_mobile_dash_backend/received_values.txt", "r") or die("Unable to open received values file!");
+                        $rec_vals_file = fopen("../../python_mobile_dash_backend/received_values.txt", "r") or die("Unable to open received values file!");
                         while (($line = fgets($rec_vals_file)) !== false) {
                             $json_decoded_line = json_decode($line, true);
                             $date = strtotime($json_decoded_line["time"]);
