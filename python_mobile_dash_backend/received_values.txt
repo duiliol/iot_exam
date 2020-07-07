@@ -1,102 +1,18 @@
-{"id": "PY0", "time": "2020-05-25T11:55:50.323191", "temperature": -9, "humidity": 31, "wind_direction": 199, "wind_intensity": 13, "rain_height": 48}
-{"id": "PY1", "time": "2020-05-25T11:55:51.323204", "temperature": 38, "humidity": 76, "wind_direction": 73, "wind_intensity": 65, "rain_height": 6}
-{"id": "PY0", "time": "2020-05-25T11:56:02.323928", "temperature": 9, "humidity": 38, "wind_direction": 206, "wind_intensity": 28, "rain_height": 25}
-{"id": "PY1", "time": "2020-05-25T11:56:03.324812", "temperature": 32, "humidity": 30, "wind_direction": 332, "wind_intensity": 98, "rain_height": 46}
-{"id": "PY0", "time": "2020-05-25T11:56:14.325580", "temperature": -16, "humidity": 30, "wind_direction": 130, "wind_intensity": 62, "rain_height": 1}
-{"id": "PY1", "time": "2020-05-25T11:56:15.326377", "temperature": -29, "humidity": 15, "wind_direction": 46, "wind_intensity": 61, "rain_height": 46}
-{"id": "PY0", "time": "2020-05-25T11:56:26.326404", "temperature": 21, "humidity": 62, "wind_direction": 120, "wind_intensity": 22, "rain_height": 35}
-{"id": "PY1", "time": "2020-05-25T11:56:27.326418", "temperature": 29, "humidity": 78, "wind_direction": 353, "wind_intensity": 16, "rain_height": 35}
-{"id": "PY0", "time": "2020-05-25T11:56:38.327237", "temperature": 16, "humidity": 87, "wind_direction": 19, "wind_intensity": 45, "rain_height": 34}
-{"id": "PY1", "time": "2020-05-25T11:56:39.327537", "temperature": -18, "humidity": 26, "wind_direction": 84, "wind_intensity": 6, "rain_height": 32}
-{"id": "PY0", "time": "2020-05-25T11:56:50.328340", "temperature": -34, "humidity": 21, "wind_direction": 282, "wind_intensity": 40, "rain_height": 38}
-{"id": "PY1", "time": "2020-05-25T11:56:51.328352", "temperature": -49, "humidity": 54, "wind_direction": 156, "wind_intensity": 52, "rain_height": 31}
-{"id": "PY0", "time": "2020-05-25T11:57:02.329196", "temperature": -45, "humidity": 90, "wind_direction": 290, "wind_intensity": 75, "rain_height": 13}
-{"id": "PY1", "time": "2020-05-25T11:57:03.330083", "temperature": 46, "humidity": 37, "wind_direction": 118, "wind_intensity": 42, "rain_height": 3}
-{"id": "PY0", "time": "2020-05-25T15:03:07.744813", "temperature": 33, "humidity": 78, "wind_direction": 219, "wind_intensity": 65, "rain_height": 16}
-{"id": "PY1", "time": "2020-05-25T15:03:08.744971", "temperature": -14, "humidity": 87, "wind_direction": 41, "wind_intensity": 50, "rain_height": 20}
-{"id": "PY0", "time": "2020-05-25T15:03:19.745805", "temperature": 46, "humidity": 75, "wind_direction": 197, "wind_intensity": 17, "rain_height": 20}
-{"id": "PY1", "time": "2020-05-25T15:03:20.746083", "temperature": -19, "humidity": 46, "wind_direction": 284, "wind_intensity": 32, "rain_height": 49}
-{"id": "PY0", "time": "2020-05-25T15:03:31.746729", "temperature": -49, "humidity": 19, "wind_direction": 274, "wind_intensity": 88, "rain_height": 7}
-{"id": "PY1", "time": "2020-05-25T15:03:32.746743", "temperature": 30, "humidity": 92, "wind_direction": 69, "wind_intensity": 54, "rain_height": 38}
-{"id": "PY0", "time": "2020-05-25T15:03:43.747203", "temperature": -5, "humidity": 93, "wind_direction": 135, "wind_intensity": 55, "rain_height": 32}
-{"id": "PY1", "time": "2020-05-25T15:03:44.747295", "temperature": -15, "humidity": 44, "wind_direction": 166, "wind_intensity": 90, "rain_height": 38}
-{"id": "PY0", "time": "2020-05-25T15:03:55.747893", "temperature": -27, "humidity": 92, "wind_direction": 217, "wind_intensity": 72, "rain_height": 36}
-{"id": "PY1", "time": "2020-05-25T15:03:56.748580", "temperature": -19, "humidity": 56, "wind_direction": 240, "wind_intensity": 53, "rain_height": 27}
-{"id": "PY0", "time": "2020-05-25T15:04:07.749391", "temperature": -25, "humidity": 68, "wind_direction": 85, "wind_intensity": 99, "rain_height": 19}
-{"id": "PY1", "time": "2020-05-25T15:04:08.749404", "temperature": 24, "humidity": 91, "wind_direction": 148, "wind_intensity": 24, "rain_height": 5}
-{"id": "PY0", "time": "2020-05-25T15:04:19.751077", "temperature": -27, "humidity": 96, "wind_direction": 65, "wind_intensity": 66, "rain_height": 35}
-{"id": "PY1", "time": "2020-05-25T15:04:20.751323", "temperature": -50, "humidity": 45, "wind_direction": 163, "wind_intensity": 79, "rain_height": 7}
-{"id": "PY0", "time": "2020-05-25T15:04:31.752268", "temperature": 31, "humidity": 3, "wind_direction": 74, "wind_intensity": 65, "rain_height": 35}
-{"id": "PY1", "time": "2020-05-25T15:04:32.752819", "temperature": -10, "humidity": 82, "wind_direction": 245, "wind_intensity": 50, "rain_height": 17}
-{"id": "PY0", "time": "2020-05-25T15:04:43.753105", "temperature": 10, "humidity": 17, "wind_direction": 239, "wind_intensity": 24, "rain_height": 49}
-{"id": "PY1", "time": "2020-05-25T15:04:44.753903", "temperature": 21, "humidity": 74, "wind_direction": 153, "wind_intensity": 100, "rain_height": 40}
-{"id": "PY0", "time": "2020-05-25T15:04:55.754817", "temperature": -49, "humidity": 90, "wind_direction": 286, "wind_intensity": 82, "rain_height": 41}
-{"id": "PY1", "time": "2020-05-25T15:04:56.754958", "temperature": 42, "humidity": 84, "wind_direction": 280, "wind_intensity": 83, "rain_height": 21}
-{"id": "PY0", "time": "2020-05-25T15:05:07.755702", "temperature": -44, "humidity": 93, "wind_direction": 205, "wind_intensity": 88, "rain_height": 45}
-{"id": "PY1", "time": "2020-05-25T15:05:08.756159", "temperature": 3, "humidity": 94, "wind_direction": 251, "wind_intensity": 22, "rain_height": 34}
-{"id": "PY0", "time": "2020-05-25T15:05:19.757027", "temperature": -3, "humidity": 36, "wind_direction": 34, "wind_intensity": 62, "rain_height": 35}
-{"id": "PY1", "time": "2020-05-25T15:05:20.757940", "temperature": 37, "humidity": 39, "wind_direction": 44, "wind_intensity": 51, "rain_height": 16}
-{"id": "PY0", "time": "2020-05-25T15:05:31.758517", "temperature": 11, "humidity": 85, "wind_direction": 63, "wind_intensity": 15, "rain_height": 17}
-{"id": "PY1", "time": "2020-05-25T15:05:32.759151", "temperature": 1, "humidity": 17, "wind_direction": 157, "wind_intensity": 19, "rain_height": 36}
-{"id": "PY0", "time": "2020-05-25T15:16:03.051412", "temperature": 48, "humidity": 48, "wind_direction": 150, "wind_intensity": 79, "rain_height": 32}
-{"id": "PY1", "time": "2020-05-25T15:16:04.051846", "temperature": 32, "humidity": 39, "wind_direction": 30, "wind_intensity": 20, "rain_height": 49}
-{"id": "PY0", "time": "2020-05-25T15:16:15.051872", "temperature": 25, "humidity": 19, "wind_direction": 282, "wind_intensity": 89, "rain_height": 14}
-{"id": "PY1", "time": "2020-05-25T15:16:16.051884", "temperature": 33, "humidity": 8, "wind_direction": 225, "wind_intensity": 47, "rain_height": 1}
-{"id": "PY0", "time": "2020-05-25T15:16:27.052441", "temperature": 8, "humidity": 85, "wind_direction": 192, "wind_intensity": 12, "rain_height": 37}
-{"id": "PY1", "time": "2020-05-25T15:16:28.052984", "temperature": 5, "humidity": 5, "wind_direction": 95, "wind_intensity": 48, "rain_height": 0}
-{"id": "PY0", "time": "2020-05-25T15:16:39.054025", "temperature": -6, "humidity": 74, "wind_direction": 244, "wind_intensity": 95, "rain_height": 5}
-{"id": "PY1", "time": "2020-05-25T15:16:40.055021", "temperature": 20, "humidity": 18, "wind_direction": 276, "wind_intensity": 75, "rain_height": 47}
-{"id": "PY0", "time": "2020-05-25T15:16:51.057062", "temperature": -35, "humidity": 13, "wind_direction": 53, "wind_intensity": 5, "rain_height": 7}
-{"id": "PY1", "time": "2020-05-25T15:16:52.057075", "temperature": 26, "humidity": 9, "wind_direction": 241, "wind_intensity": 27, "rain_height": 45}
-{"id": "PY0", "time": "2020-05-25T15:17:03.057265", "temperature": -19, "humidity": 73, "wind_direction": 222, "wind_intensity": 53, "rain_height": 34}
-{"id": "PY1", "time": "2020-05-25T15:17:04.057279", "temperature": 33, "humidity": 52, "wind_direction": 173, "wind_intensity": 50, "rain_height": 44}
-{"id": "PY0", "time": "2020-05-25T15:17:15.057304", "temperature": -14, "humidity": 25, "wind_direction": 71, "wind_intensity": 37, "rain_height": 16}
-{"id": "PY1", "time": "2020-05-25T15:17:16.057822", "temperature": 9, "humidity": 19, "wind_direction": 77, "wind_intensity": 57, "rain_height": 24}
-{"id": "PY0", "time": "2020-05-25T15:17:27.057847", "temperature": -18, "humidity": 92, "wind_direction": 308, "wind_intensity": 34, "rain_height": 37}
-{"id": "PY1", "time": "2020-05-25T15:17:28.058142", "temperature": 26, "humidity": 62, "wind_direction": 103, "wind_intensity": 22, "rain_height": 5}
-{"id": "PY0", "time": "2020-05-25T15:26:49.671950", "temperature": -10, "humidity": 21, "wind_direction": 70, "wind_intensity": 24, "rain_height": 32}
-{"id": "PY1", "time": "2020-05-25T15:26:50.672800", "temperature": -26, "humidity": 82, "wind_direction": 124, "wind_intensity": 35, "rain_height": 49}
-{"id": "PY0", "time": "2020-05-25T15:27:01.673324", "temperature": 10, "humidity": 27, "wind_direction": 280, "wind_intensity": 50, "rain_height": 35}
-{"id": "PY1", "time": "2020-05-25T15:27:02.673336", "temperature": 13, "humidity": 33, "wind_direction": 184, "wind_intensity": 15, "rain_height": 24}
-{"id": "PY0", "time": "2020-05-25T15:27:13.673898", "temperature": 37, "humidity": 38, "wind_direction": 47, "wind_intensity": 30, "rain_height": 7}
-{"id": "PY1", "time": "2020-05-25T15:27:14.674496", "temperature": -23, "humidity": 97, "wind_direction": 252, "wind_intensity": 77, "rain_height": 38}
-{"id": "PY0", "time": "2020-05-25T15:27:25.675459", "temperature": 50, "humidity": 38, "wind_direction": 329, "wind_intensity": 23, "rain_height": 40}
-{"id": "PY1", "time": "2020-05-25T15:27:26.675976", "temperature": 33, "humidity": 41, "wind_direction": 287, "wind_intensity": 26, "rain_height": 8}
-{"id": "PY0", "time": "2020-05-25T15:27:37.676571", "temperature": -30, "humidity": 29, "wind_direction": 41, "wind_intensity": 43, "rain_height": 8}
-{"id": "PY1", "time": "2020-05-25T15:27:38.676584", "temperature": 12, "humidity": 23, "wind_direction": 238, "wind_intensity": 75, "rain_height": 6}
-{"id": "PY0", "time": "2020-05-25T15:27:49.677254", "temperature": -8, "humidity": 1, "wind_direction": 236, "wind_intensity": 8, "rain_height": 4}
-{"id": "PY1", "time": "2020-05-25T15:27:50.677740", "temperature": -6, "humidity": 42, "wind_direction": 266, "wind_intensity": 83, "rain_height": 37}
-{"id": "PY0", "time": "2020-05-25T15:28:01.678033", "temperature": -14, "humidity": 33, "wind_direction": 293, "wind_intensity": 90, "rain_height": 28}
-{"id": "PY1", "time": "2020-05-25T15:28:02.678047", "temperature": 27, "humidity": 46, "wind_direction": 213, "wind_intensity": 82, "rain_height": 47}
-{"id": "PY0", "time": "2020-05-25T15:34:43.926497", "temperature": -10, "humidity": 21, "wind_direction": 89, "wind_intensity": 11, "rain_height": 16}
-{"id": "PY1", "time": "2020-05-25T15:34:44.926510", "temperature": -38, "humidity": 22, "wind_direction": 274, "wind_intensity": 81, "rain_height": 49}
-{"id": "PY0", "time": "2020-05-25T15:34:55.927109", "temperature": -6, "humidity": 97, "wind_direction": 38, "wind_intensity": 62, "rain_height": 24}
-{"id": "PY1", "time": "2020-05-25T15:34:56.927304", "temperature": 42, "humidity": 36, "wind_direction": 120, "wind_intensity": 58, "rain_height": 41}
-{"id": "PY0", "time": "2020-05-25T15:35:07.928201", "temperature": 36, "humidity": 86, "wind_direction": 170, "wind_intensity": 4, "rain_height": 34}
-{"id": "PY1", "time": "2020-05-25T15:35:08.929148", "temperature": 46, "humidity": 48, "wind_direction": 115, "wind_intensity": 72, "rain_height": 26}
-{"id": "PY0", "time": "2020-05-25T15:35:19.930394", "temperature": 23, "humidity": 2, "wind_direction": 303, "wind_intensity": 58, "rain_height": 27}
-{"id": "PY1", "time": "2020-05-25T15:35:20.930476", "temperature": 16, "humidity": 17, "wind_direction": 156, "wind_intensity": 93, "rain_height": 42}
-{"id": "PY0", "time": "2020-05-25T15:35:31.931725", "temperature": 16, "humidity": 8, "wind_direction": 232, "wind_intensity": 65, "rain_height": 8}
-{"id": "PY1", "time": "2020-05-25T15:35:32.932017", "temperature": 27, "humidity": 47, "wind_direction": 301, "wind_intensity": 69, "rain_height": 47}
-{"id": "PY0", "time": "2020-05-25T15:35:43.932830", "temperature": -15, "humidity": 44, "wind_direction": 60, "wind_intensity": 33, "rain_height": 31}
-{"id": "PY1", "time": "2020-05-25T15:35:44.932844", "temperature": -34, "humidity": 33, "wind_direction": 193, "wind_intensity": 28, "rain_height": 41}
-{"id": "RIOT-TTN", "time": "2020-06-19T10:01:24.703113", "temperature": "-30", "humidity": "20", "wind_direction": "244", "wind_intensity": "20", "rain_height": "47"}
-{"id": "RIOT-TTN", "time": "2020-06-19T10:01:57.621222", "temperature": "-50", "humidity": "0", "wind_direction": "61", "wind_intensity": "0", "rain_height": "40"}
-{"id": "RIOT-TTN", "time": "2020-06-19T10:02:14.468241", "temperature": "-1", "humidity": "49", "wind_direction": "126", "wind_intensity": "49", "rain_height": "28"}
-{"id": "RIOT-TTN", "time": "2020-06-19T10:02:40.655922", "temperature": "-1", "humidity": "49", "wind_direction": "126", "wind_intensity": "49", "rain_height": "28"}
-{"id": "RIOT-TTN", "time": "2020-06-19T10:02:52.970609", "temperature": "-1", "humidity": "49", "wind_direction": "126", "wind_intensity": "49", "rain_height": "28"}
-{"id": "RIOT-TTN", "time": "2020-06-19T10:03:18.158828", "temperature": "45", "humidity": "95", "wind_direction": "272", "wind_intensity": "95", "rain_height": "48"}
-{"id": "RIOT-TTN", "time": "2020-06-19T10:03:40.975566", "temperature": "-9", "humidity": "41", "wind_direction": "29", "wind_intensity": "41", "rain_height": "15"}
-{"id": "RIOT-TTN", "time": "2020-06-19T10:03:46.892268", "temperature": "-9", "humidity": "41", "wind_direction": "29", "wind_intensity": "41", "rain_height": "15"}
-{"id": "RIOT-TTN", "time": "2020-06-19T10:04:08.078510", "temperature": "-9", "humidity": "41", "wind_direction": "29", "wind_intensity": "41", "rain_height": "15"}
-{"id": "RIOT-TTN", "time": "2020-06-19T10:04:17.000959", "temperature": "-30", "humidity": "20", "wind_direction": "131", "wind_intensity": "20", "rain_height": "21"}
-{"id": "RIOT-TTN", "time": "2020-06-19T10:05:15.490827", "temperature": "49", "humidity": "99", "wind_direction": "131", "wind_intensity": "99", "rain_height": "11"}
-{"id": "RIOT-TTN", "time": "2020-06-19T10:05:41.981159", "temperature": "49", "humidity": "99", "wind_direction": "131", "wind_intensity": "99", "rain_height": "11"}
-{"id": "RIOT-TTN", "time": "2020-06-19T10:05:53.228357", "temperature": "-39", "humidity": "11", "wind_direction": "241", "wind_intensity": "11", "rain_height": "23"}
-{"id": "RIOT-TTN", "time": "2020-06-19T10:06:14.723462", "temperature": "-8", "humidity": "42", "wind_direction": "70", "wind_intensity": "42", "rain_height": "25"}
-{"id": "RIOT-TTN", "time": "2020-06-19T10:06:21.524461", "temperature": "-8", "humidity": "42", "wind_direction": "70", "wind_intensity": "42", "rain_height": "25"}
-{"id": "RIOT-TTN", "time": "2020-06-19T10:06:43.202770", "temperature": "-8", "humidity": "42", "wind_direction": "70", "wind_intensity": "42", "rain_height": "25"}
-{"id": "RIOT-TTN", "time": "2020-06-19T10:06:58.074770", "temperature": "-29", "humidity": "21", "wind_direction": "172", "wind_intensity": "21", "rain_height": "31"}
-{"id": "RIOT-TTN", "time": "2020-06-19T10:07:26.490769", "temperature": "-29", "humidity": "21", "wind_direction": "172", "wind_intensity": "21", "rain_height": "31"}
-{"id": "RIOT-TTN", "time": "2020-06-19T10:07:37.817626", "temperature": "18", "humidity": "68", "wind_direction": "59", "wind_intensity": "68", "rain_height": "16"}
-{"id": "RIOT-TTN", "time": "2020-06-19T10:07:59.363111", "temperature": "49", "humidity": "99", "wind_direction": "249", "wind_intensity": "99", "rain_height": "18"}
+{"id": "vei7b4jdnk000000", "time": "2020-07-07T07:25:45.582Z", "state": "STANDING", "x": "N/A", "y": "N/A", "z": "N/A"}
+{"id": "vei7b4jdnk000000", "time": "2020-07-07T07:25:46.582Z", "state": "STANDING", "x": "N/A", "y": "N/A", "z": "N/A"}
+{"id": "vei7b4jdnk000000", "time": "2020-07-07T07:25:47.582Z", "state": "STANDING", "x": "N/A", "y": "N/A", "z": "N/A"}
+{"id": "vei7b4jdnk000000", "time": "2020-07-07T07:25:48.582Z", "state": "STANDING", "x": "N/A", "y": "N/A", "z": "N/A"}
+{"id": "vei7b4jdnk000000", "time": "2020-07-07T07:25:49.582Z", "state": "STANDING", "x": "N/A", "y": "N/A", "z": "N/A"}
+{"id": "vei7b4jdnk000000", "time": "2020-07-07T07:25:50.582Z", "state": "STANDING", "x": "N/A", "y": "N/A", "z": "N/A"}
+{"id": "vei7b4jdnk000000", "time": "2020-07-07T07:25:51.581Z", "state": "STANDING", "x": "N/A", "y": "N/A", "z": "N/A"}
+{"id": "vei7b4jdnk000000", "time": "2020-07-07T07:25:52.582Z", "state": "STANDING", "x": "N/A", "y": "N/A", "z": "N/A"}
+{"id": "vei7b4jdnk000000", "time": "2020-07-07T07:25:53.582Z", "state": "STANDING", "x": "N/A", "y": "N/A", "z": "N/A"}
+{"id": "vei7b4jdnk000000", "time": "2020-07-07T07:25:54.581Z", "state": "STANDING", "x": "N/A", "y": "N/A", "z": "N/A"}
+{"id": "vei7b4jdnk000000", "time": "2020-07-07T07:25:55.582Z", "state": "STANDING", "x": "N/A", "y": "N/A", "z": "N/A"}
+{"id": "vei7b4jdnk000000", "time": "2020-07-07T07:25:56.582Z", "state": "STANDING", "x": "N/A", "y": "N/A", "z": "N/A"}
+{"id": "vei7b4jdnk000000", "time": "2020-07-07T07:25:57.582Z", "state": "STANDING", "x": "N/A", "y": "N/A", "z": "N/A"}
+{"id": "vei7b4jdnk000000", "time": "2020-07-07T07:25:58.581Z", "state": "STANDING", "x": "N/A", "y": "N/A", "z": "N/A"}
+{"id": "vei7b4jdnk000000", "time": "2020-07-07T07:25:59.582Z", "state": "STANDING", "x": "N/A", "y": "N/A", "z": "N/A"}
+{"id": "vei7b4jdnk000000", "time": "2020-07-07T07:26:00.582Z", "state": "STANDING", "x": "N/A", "y": "N/A", "z": "N/A"}
+{"id": "vei7b4jdnk000000", "time": "2020-07-07T07:26:01.581Z", "state": "STANDING", "x": "N/A", "y": "N/A", "z": "N/A"}
+{"id": "vei7b4jdnk000000", "time": "2020-07-07T07:26:02.582Z", "state": "STANDING", "x": "N/A", "y": "N/A", "z": "N/A"}

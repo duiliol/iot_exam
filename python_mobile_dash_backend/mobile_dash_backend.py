@@ -1,39 +1,52 @@
+import ssl
 import time
 
 from paho.mqtt import client as mqtt
+import json
+from aws.aws_config import *
 
-BROKERADDRESS = "localhost"
 CONNECTION_WAIT_SLEEP = 5
 
-
-def on_connect(mqtt_client, userdata, flags, rc):
+def on_mqtt_connect(mqtt_client, userdata, flags, rc):
     global connected  # Use global variable
     connected = False
+    #print(rc)
     if rc == 0:
         print("Connected to Broker")
         connected = True  # Signal connection
-        print("Subscribing to sensor_values topic")
-        mqtt_client.subscribe("stations/sensor_values", 1)
+        print("Subscribing to mobile_sensor_states topic")
+        mqtt_client.subscribe("stations/mobile_sensor_states", 1)
     else:
         print("Connection to Broker failed")
 
-
-def on_message(mqtt_client, userdata, message):
+def on_mqtt_message(mqtt_client, userdata, message):
     print("Message received: " + message.topic + " - " + message.payload.decode())
     f = open("received_values.txt","a")
-    f.write(message.payload.decode() + "\n")
+    json_state = json.loads(message.payload.decode())
+    if("x" not in json_state or "y" not in json_state or "z" not in json_state):
+        json_state["x"]="N/A"
+        json_state["y"]="N/A"
+        json_state["z"]="N/A"
+    f.write(json.dumps(json_state) + "\n")
     f.close()
 
 def main():
     #f = open("received_values.txt","w")
     #f.close()
-    print("Initializing Mosquitto Client")
-    mqtt_client = mqtt.Client("Backend Subscriber")
-    mqtt_client.on_connect = on_connect
-    mqtt_client.on_message = on_message
+    print("Initializing MQTT Client")
+    mqtt_client = mqtt.Client()
+
+    mqtt_client.on_connect = on_mqtt_connect
+    mqtt_client.on_message = on_mqtt_message
 
     print("Connecting to Broker")
-    mqtt_client.connect(BROKERADDRESS)
+    print("Setting TLS security")
+    #ssl_context = ssl_alpn()
+    #mqtt_client.tls_set_context(context=ssl_context)
+    mqtt_client.tls_set(CA_CERTIFICATE, CLIENT_CERTIFICATE, keyfile=PRIVATE_KEY, cert_reqs=ssl.CERT_REQUIRED,
+              tls_version=ssl.PROTOCOL_TLSv1_2, ciphers=None)
+    print("Trying connection")
+    mqtt_client.connect(aws_iot_endpoint, BROKERPORT)
 
     print("Listening...")
     mqtt_client.loop_forever()
