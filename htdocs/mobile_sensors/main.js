@@ -21,6 +21,7 @@ function randomString(length) {
 function onConnect() {
     // Once a connection has been made, make a subscription and send a message.
     console.log("successfully connected");
+    mqttClient.subscribe("stations/mobile_sensor_states");
     /*mqttClient.subscribe("World");
     message = new Paho.MQTT.Message("Hello");
     message.destinationName = "World";
@@ -35,8 +36,15 @@ function onConnect() {
   }
   
   // called when a message arrives
-  function onMessageArrived(message) {
-    console.log("onMessageArrived:"+message.payloadString);
+  function onMessage(message) {
+    //console.log("message received");
+    //console.log("onMessageArrived:"+message.payloadString);
+    message = JSON.parse(message.payloadString);
+    if(message.id == clientId){
+        if(message.state){
+            state=message.state;
+        }
+    }
   }
 
 function form_handler()
@@ -101,15 +109,57 @@ function startEdge(){
 }
 
 function mainCloud() {
+    clientId = document.getElementById("mobile_id").value;
+    if (clientId==""){
+        clientId = randomString(16);
+        document.getElementById("mobile_id").value=clientId;
+    }
+    var date = new Date();
+    var isotime = date.toISOString();
     document.getElementById("edgeButton").setAttribute("hidden","true");
-    x=sensor.x;
-    y=sensor.y;
-    z=sensor.z;
+    document.getElementById("mobile_id").setAttribute("disabled","true");
+    //x_value=sensor.x;
+    //y_value=sensor.y;
+    //z_value=sensor.z;
+    x_value=0;
+    y_value=0;
+    z_value=0;
     document.getElementById("activityHeader").innerHTML="Current activity";
-    document.getElementById("activity").innerHTML="("+x.toString()+", "+y.toString()+", "+z.toString()+")";
+    //document.getElementById("activity").innerHTML="("+x_value.toString()+", "+y_value.toString()+", "+z_value.toString()+")";
+    var current_state_json = {
+        id: clientId,
+        time: isotime,
+        x: x_value,
+        y: y_value,
+        z: z_value
+    };
+    message = new Paho.MQTT.Message(JSON.stringify(current_state_json));
+    if(state=="RUNNING"){
+        document.getElementById("activity").setAttribute("style","color:yellow");
+    }
+    if(state=="WALKING"){
+        document.getElementById("activity").setAttribute("style","color:green");
+    }
+    else{
+        document.getElementById("activity").setAttribute("style","color:red");
+        state="STANDING";
+    }
+    document.getElementById("activity").innerHTML=state;
+    message.destinationName = raw_data_topic;
+    mqttClient.send(message);
+    return false;
 }
 
 function startCloud(){
+    var requestUrl = SigV4Utils.getSignedUrl(hostname, AWS.config.region, AWS.config.credentials);
+    mqttClient = new Paho.MQTT.Client(requestUrl, clientId);
+    mqttClient.onMessageArrived=onMessage;
+    mqttClient.connect({onSuccess:onConnect, useSSL: true,
+        timeout: 3,
+        mqttVersion: 4,
+        onFailure: function (err) {
+          console.log("Connection error: "+err.errorCode);}});
+    //mqttClient.subscribe("stations/mobile_sensor_states")
     sensor = new LinearAccelerationSensor({frequency: 0.5});
     sensor.start()
     state = setInterval(mainCloud,1000);

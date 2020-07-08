@@ -27,7 +27,15 @@ def on_mqtt_message(mqtt_client, userdata, message):
         json_state["x"]="N/A"
         json_state["y"]="N/A"
         json_state["z"]="N/A"
-    f.write(json.dumps(json_state) + "\n")
+    normalized_message = {
+        "id":json_state["id"],
+        "time":json_state["time"],
+        "x":json_state["x"],
+        "y":json_state["y"],
+        "z":json_state["z"],
+        "state":json_state["state"]
+    }
+    f.write(json.dumps(normalized_message) + "\n")
     f.close()
 
 def main():
