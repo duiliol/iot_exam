@@ -137,3 +137,13 @@
 {"id": "RIOT-01", "time": "2020-07-09T09:53:48", "temperature": "25", "humidity": "75", "wind_direction": "287", "wind_intensity": "75", "rain_height": "45"}
 {"id": "RIOT-01", "time": "2020-07-09T09:53:53", "temperature": "7", "humidity": "57", "wind_direction": "50", "wind_intensity": "57", "rain_height": "42"}
 {"id": "RIOT-01", "time": "2020-07-09T09:54:03", "temperature": "43", "humidity": "93", "wind_direction": "1", "wind_intensity": "93", "rain_height": "48"}
+{"id": "RIOT-TTN", "time": "2020-07-09T10:25:53.422284", "temperature": "43", "humidity": "93", "wind_direction": "286", "wind_intensity": "93", "rain_height": "11"}
+{"id": "RIOT-TTN", "time": "2020-07-09T10:25:59.748568", "temperature": "43", "humidity": "93", "wind_direction": "286", "wind_intensity": "93", "rain_height": "11"}
+{"id": "RIOT-TTN", "time": "2020-07-09T10:26:21.903625", "temperature": "43", "humidity": "93", "wind_direction": "286", "wind_intensity": "93", "rain_height": "11"}
+{"id": "RIOT-TTN", "time": "2020-07-09T10:26:35.861974", "temperature": "-45", "humidity": "5", "wind_direction": "87", "wind_intensity": "5", "rain_height": "43"}
+{"id": "RIOT-TTN", "time": "2020-07-09T10:27:03.620025", "temperature": "-45", "humidity": "5", "wind_direction": "87", "wind_intensity": "5", "rain_height": "43"}
+{"id": "RIOT-TTN", "time": "2020-07-09T10:27:14.934380", "temperature": "1", "humidity": "51", "wind_direction": "334", "wind_intensity": "51", "rain_height": "27"}
+{"id": "RIOT-TTN", "time": "2020-07-09T10:27:31.397408", "temperature": "1", "humidity": "51", "wind_direction": "334", "wind_intensity": "51", "rain_height": "27"}
+{"id": "RIOT-TTN", "time": "2020-07-09T10:27:52.758954", "temperature": "14", "humidity": "64", "wind_direction": "83", "wind_intensity": "64", "rain_height": "39"}
+{"id": "RIOT-TTN", "time": "2020-07-09T10:28:04.189445", "temperature": "47", "humidity": "97", "wind_direction": "67", "wind_intensity": "97", "rain_height": "27"}
+{"id": "RIOT-TTN", "time": "2020-07-09T10:28:25.799202", "temperature": "-6", "humidity": "44", "wind_direction": "339", "wind_intensity": "44", "rain_height": "30"}
