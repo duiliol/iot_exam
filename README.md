@@ -80,4 +80,7 @@ also retrieve:
     from GitHub. After building the broker, the configuration provided in this repository, in the <em>rsmb.conf</em> file
     can be used when launching it.</li>
 </ul>
+In order to correctly connect to the AWS IoT MQTT broker, you should create a device on AWS IoT and place the 
+information required to connect to it in the <em>aws</em> folder. Please refer to the readme in the AWS folder for more 
+details.
 
