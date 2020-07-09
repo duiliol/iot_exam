@@ -46,7 +46,8 @@ components please refer to the README in the folder of each component:
     <br/><br/></li>
     <li><b><a href="http://ichatz.me/Site/InternetOfThings2020-Assignment4">Assignment 4</a>: </b> this assignment 
     extends the IoT platform designed for the previous assignments by introducing crowd-sensing support. In particular, 
-    this assignment required to implement an HTML5 application that could support a user's activity detection and 
+    this assignment required to implement an HTML5 application that could support a user's activity detection (using 
+    the sensors integrated in mobile phones) and 
     recognition. Activity detection exploits the Generic Sensor API, while the recognition can be performed either
     on the mobile device (<em>edge</em> deployment) or remotely (<em>cloud</em> deployment). A dashboard, similar to the
     one for the virtual environmental sensors shows the activity of the users.
