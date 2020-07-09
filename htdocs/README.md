@@ -1,4 +1,4 @@
-<h1>htdocs folder</h1>
+<h1><em>htdocs</em> folder</h1>
 <p>This folder contains all the web applications developed to support the IoT platform implemented. More in detail:
 <ul>
 <li>The <em>root</em> of this folder contains the implementation of the dashboard for displaying the information 
