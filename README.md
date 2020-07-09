@@ -48,6 +48,14 @@ components please refer to the README in the folder of each component:
     extends the IoT platform designed for the previous assignments by introducing crowd-sensing support. In particular, 
     this assignment required to implement an HTML5 application that could support a user's activity detection and 
     recognition. Activity detection exploits the Generic Sensor API, while the recognition can be performed either
-    on the mobile device (<em>edge</em> deployment) or remotely (<em>cloud</em> deployment.</li>
+    on the mobile device (<em>edge</em> deployment) or remotely (<em>cloud</em> deployment). A dashboard, similar to the
+    one for the virtual environmental sensors shows the activity of the users.
+    <br/><br/>All the material regarding this assignment is contained within the following folders:
+    <ul>
+        <li><em>htdocs/mobile_sensors: </em> since this is an HTML5 application, it is contained within the <em>
+        htdocs</em> web server folder, ready to be served over HTTPS. The web-server used for testing is again XAMPP for 
+        Windows.</li>
+    </ul>
+    <br/><br/></li>
 </ul>
 
