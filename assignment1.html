@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>IoT 2019/2020 Exam Assignment 1 Tutorial</title>
+  </head>
+  <body><span style="font-family: Verdana;"> </span>
+    <h1><span style="font-family: Verdana;">Assignment 1</span></h1>
+    <span style="font-family: Verdana;"> </span>
+    <h2><span style="font-family: Verdana;">Virtual Environmental Stations
+        publishing values to AWS IoT</span></h2>
+    <span style="font-family: Verdana;"> </span>
+    <hr><span style="font-family: Verdana;"> </span>
+    <p><span style="font-family: Verdana;">This project describes a cloud-based
+        IoT system collecting information from a <em>set of virtual
+          environmental sensors</em> using the MQTT protocol. Data collected
+        from the sensors are displayed by a <em>simple web site</em>.</span></p>
+    <span style="font-family: Verdana;"> </span>
+    <p><span style="font-family: Verdana;">The architecture implemented in this
+        project can be sketched as follows:</span></p>
+    <span style="font-family: Verdana;"> </span>
+    <div style="text-align: center;"><span style="font-family: Verdana;"><img src="web_images/assignment_1_architecture.PNG"
+          alt="" title="Architecture"></span></div>
+    <span style="font-family: Verdana;"> </span>
+    <div style="text-align: justify;"><span style="font-family: Verdana;">More
+        in detail, a set of <i>virtual environmental stations</i>, that
+        generate random values for <i>temperature<em>, humidity, wind
+            direction, wind intensity </em></i>and <i>rain height </i>publishes
+        such values to AWS IoT using MQTT. The messages are then forwarded to
+        the <i>dashboard backend</i>, implemented in Python, which subscribes
+        to the topic on which the virtual stations publish the values they
+        generate. Upon receiving the messages, which are in JSON format, the
+        backend stores them to a text file, which is then used by the web server
+        to populate the dashboard. The web server used in this tutorial is XAMPP
+        for Windows.</span></div>
+    <span style="font-family: Verdana;"> </span>
+    <div style="text-align: justify;"><span style="font-family: Verdana;"><br>
+      </span> </div>
+    <span style="font-family: Verdana;"> </span>
+    <h2><span style="font-family: Verdana;">Prerequisites</span></h2>
+    <h3><span style="font-family: Verdana;">Clone the repository</span></h3>
+    <p><span style="font-family: Verdana;">As a first step, you need to clone
+        the GitHub repository of the project. In the next sections we'll assume
+        to be working in the root of the folder where you cloned the repository.<br>
+      </span></p>
+    <span style="font-family: Verdana;"> </span>
+    <h3><span style="font-family: Verdana;">AWS Account</span></h3>
+    <span style="font-family: Verdana;"></span>
+    <p><span style="font-family: Verdana;">In order to be able to test the
+        system, an AWS account, either normal or Education, is needed. After
+        creating the account, a new device must be created in AWS IoT Core.
+        Certificates to access the device must be put in the <i><em>aws</em></i>
+        folder of the project, while the <em>aws/aws_config.py </em>must be
+        edited so that the variables:</span></p>
+    <span style="font-family: Verdana;"> </span>
+    <ul>
+    </ul>
+    <ul>
+      <li><span style="font-family: Verdana;"><code>BROKERADDRESS </code>contains
+          the AWS device endpoint, which usually has the <code><span style="color:#8c8c8c;font-style:italic;">&lt;random&gt;.iot.&lt;region&gt;.amazonaws.com
+              </span></code><span style="color:#8c8c8c;font-style:italic;"> </span>
+          format;</span></li>
+      <li><span style="font-family: Verdana;"><code>CA_CERTIFICATE </code>contains
+          the AWS CA certificate, as given when creating the device, in <code>.pem
+            </code>format;</span></li>
+      <li><span style="font-family: Verdana;"><code>CLIENT_CERTIFICATE </code>contains
+          the AWS device client certificate, as given when creating the device,
+          in <code>.pem.crt </code>format;</span></li>
+      <li><span style="font-family: Verdana;"><code>PRIVATE_KEY</code> contains
+          the private key, as given when creating the device, in <code>.pem.key
+          </code>format.</span></li>
+    </ul>
+    <span style="font-family: Verdana;"> </span>
+    <h3><span style="font-family: Verdana;">Web server for dashboard</span></h3>
+    <span style="font-family: Verdana;"> </span>
+    <p><span style="font-family: Verdana;">In order to be available, the
+        dashboard requires a Web server running on your machine. In this example
+        we are using XAMPP for Windows, but any web server with PHP support
+        should work. The files to be used by the web server to serve the
+        dashboards for this and all the other projects are in the <i>htdocs</i>
+        folder<em></em>. It would be preferable to create an alias in the web
+        server configuration, to avoid issues with sensor file path.<br>
+      </span></p>
+    <span style="font-family: Verdana;"> </span>
+    <h3><span style="font-family: Verdana;">Python dependencies</span></h3>
+    <span style="font-family: Verdana;"> </span>
+    <p><span style="font-family: Verdana;">The Python version used to implement
+        virtual sensors and backend is 3.7. Both the virtual sensors and the
+        backend, are based on MQTT for communication with the cloud, so in order
+        for them to be executable the Python <code>paho-mqtt </code>package is
+        needed.</span></p>
+    <h2><span style="font-family: Verdana;">Running the system</span></h2>
+    <h3><span style="font-family: Verdana;">Running the web server and testing
+        the access to the dashboard<br>
+      </span></h3>
+    <p><span style="font-family: Verdana;">After having prepared what's required
+        from previous section, it's time to run the system. As a first step, the
+        web server should be running, so that the dashboard is reachable from a
+        browser. Typing <code>&lt;webserveraddress&gt;/index.php </code>(where
+        <code>&lt;webserveraddress&gt; </code>is the address from which the web
+        server serves the dashboard, including possibly defined aliases), the
+        main page of the dashboard should be displayed. If this is the case,
+        then we can consider next point.<br>
+      </span></p>
+    <div style="text-align: center;"><span style="font-family: Verdana;"><img src="web_images/iot_dash_home.png"
+          alt="" title="IoT_dash_home"><br>
+      </span></div>
+    <div style="text-align: left;">
+      <h3><span style="font-family: Verdana;">Launching the dashboard backend</span></h3>
+      <p><span style="font-family: Verdana;">The dashboard backend needs to be
+          running in order to subscribe to the AWS IoT MQTT topic and receive
+          virtual station values as they are published. To launch the backend it
+          is sufficient to enter the <code>python_dash_backend </code>folder
+          and launch, the Python script using the Python interpreter with the
+          command <code>python dash_backend_aws.py</code> (assuming <code>python</code>
+          is the alias of the Python 3.7 interpreter<code>, </code>this depends
+          on your system configuration. The backend has successfully started
+          when it connects to the remote broker, subscribes to the topic and
+          then remains waiting for messages.</span></p>
+      <div style="text-align: center;"><img src="file:///E:/iot_exam/web_images/dash_backend_started.png"
+          alt="" title="dash_backend_started"></div>
+      <div style="text-align: left;">
+        <h2><span style="font-family: Verdana;">Launching an arbitrary number of
+            virtual stations</span></h2>
+        <p><span style="font-family: Verdana;">At this point, everything is
+            ready to launch the virtual environmental stations and see the
+            generated values from the dashboard.</span></p>
+        <p><span style="font-family: Verdana;">The code for running the stations
+            is in the <code>python_sensor </code>folder and the launcher is <code>mqtt_publisher_aws.py.
+              </code>The launcher allows to launch an arbitrary number of
+            virtual stations by specifying it as parameter. For example, if you
+            want to start 3 virtual stations, then the syntax would be <code>python
+              mqtt_publisher_aws.py 3</code>. Upon starting, the launcher
+            initializes the required number of virtual stations assigning them
+            an identifier of the type <code>PYx</code>, where <code>x</code>
+            is a progressive number from 0 to n-1. The picture below shows, on
+            the left, the three virtual stations generating random values and
+            sensing them to the MQTT broker, which correctly forwards the
+            messages to the running backend, on the right.<br>
+          </span></p>
+        <img src="web_images/running_stations_and_backend.png" alt="" title="running_station_backend"></div>
+      <h3><span style="font-family: Verdana;">Accessing the dashboard</span></h3>
+      <p><span style="font-family: Verdana;">At this point it is possible to
+          access the dashboard to either <em>view the latest values received
+            from a specific station</em>, or <em>view the values generated by a
+            specific sensor (from all the running stations</em>) <em>in the
+            last hour</em>. When accessing the dashboard, a dropdown menu allows
+          to choose between the two views:</span></p>
+      <div style="text-align: center;"><img src="web_images/dashboard_dropdown.png"
+          alt="" title="dashboard_view_dropdown"></div>
+      <div style="text-align: center;"><br>
+      </div>
+      <div style="text-align: left;"><span style="font-family: Verdana;">Supposing
+          that we want to access all the latest sensor values from a specific
+          station, then we must choose the first option and then specify, from a
+          dropdown menu, which station we are interested in by its identifier:</span></div>
+      <div style="text-align: left;"><span style="font-family: Verdana;"><br>
+        </span></div>
+      <div style="text-align: center;"><img src="web_images/station_choice_dropdown.png"
+          alt="" title="station_choice_dropdown"></div>
+      <div style="text-align: left;"><span style="font-family: Verdana;">Upon
+          selecting the desired station, the latest values received are shown:</span></div>
+      <div style="text-align: left;"><span style="font-family: Verdana;"><br>
+        </span></div>
+      <div style="text-align: center;"><img src="web_images/dashboard_latest_value.png"
+          alt="" title="latest_values"></div>
+    </div>
+    <p><span style="font-family: Verdana;">If on the other hand we want to view
+        the latest hour values for a specific sensor, from all the stations,
+        then selecting the other option in the <em>Current view </em>dropdown
+        menu, the interface asks for a sensor name from another dropdown menu.
+        After selecting the sensor from the list, the required values are shown:</span></p>
+    <div style="text-align: center;"><img src="web_images/dashboard_last_hour.png"
+        alt="" title="dashboard_last_hour_values"><span style="font-family: Verdana;">
+      </span></div>
+    <p><span style="font-family: Verdana;"><br>
+      </span> </p>
+    <span style="font-family: Verdana;"> </span>
+    <ul>
+    </ul>
+    <span style="font-family: Verdana;"> </span>
+  </body>
+</html>
