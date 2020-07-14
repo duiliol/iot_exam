@@ -1,6 +1,8 @@
+import os
 import ssl
+import sys
 import time
-
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from paho.mqtt import client as mqtt
 import json
 from aws.aws_config import *

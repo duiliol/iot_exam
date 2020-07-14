@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>IoT 2019/2020 Exam Assignment 4 Tutorial</title>
+  </head>
+  <body><span style="font-family: Verdana;"> </span>
+    <h1><span style="font-family: Verdana;">Assignment 4<br>
+      </span> </h1>
+    <span style="font-family: Verdana;"> </span>
+    <h2><span style="font-family: Verdana;">A crowd-sensing application based on
+        HTML-5, running on mobile devices, detecting physical activity through
+        Generic Sensor API.<br>
+      </span> </h2>
+    <span style="font-family: Verdana;"> </span>
+    <hr><span style="font-family: Verdana;"> </span>
+    <p><span style="font-family: Verdana;">This assignment extends the IoT
+        platform designed for the previous assignments by introducing <i>crowd-sensing</i>
+        support. In particular, this project implement an <i>HTML5</i>
+        application for user's physical activity detection, using the sensors
+        integrated in their mobile phones, and recognition. Activity detection
+        exploits the <i>Generic Sensor API</i>, while the recognition of the
+        current activity can be performed either on the mobile device (edge
+        deployment) or remotely (cloud deployment). A dashboard, similar to the
+        one for the virtual environmental sensors shows the activity of the
+        users. </span></p>
+    <span style="font-family: Verdana;"> </span>
+    <p><span style="font-family: Verdana;">The architecture implemented in this
+        project can be represented as follows:</span></p>
+    <div style="text-align: center;"><span style="font-family: Verdana;"><img src="web_images/assignment_4_architecture.png"
+          alt=""></span></div>
+    <div style="text-align: left;"><span style="font-family: Verdana;">As it is
+        possible to see, this is mainly a web application. A web server allows
+        mobile phones to access a JavaScript-based user interface, which
+        implements the activity detection, edge-based activity recognition and
+        MQTT communication with AWS IoT.</span></div>
+    <div style="text-align: left;"><span style="font-family: Verdana;">Similarly
+        to the other projects, a dashboard backend collects data from AWS IoT
+        and stores them in a file the web server uses to feed the dashboard.
+        Both dashboard backend and dashboard itself are similar to the ones used
+        in the previous projects, although with slight modifications to support
+        the different settings. Devices can recognize user's activity either by
+        exploiting local computing resources to analyze sensor data (edge
+        deployment), or cloud resources (AWS Lambda).</span></div>
+    <div style="text-align: left;"><span style="font-family: Verdana;"><br>
+      </span></div>
+    <div style="text-align: left;"><span style="font-family: Verdana;">The
+        mobile user interface, independently of the chosen recognition engine
+        (remote or local), show the current user's activity between STANDING,
+        RUNNING or WALKING, while the dashboard allows to view cumulative
+        results. <br>
+      </span></div>
+    <div style="text-align: left;"><span style="font-family: Verdana;">The
+        dashboard allows to access either the latest values received from a
+        specific user, or the values of a specific sensor or the state of all
+        the users captured in the last hour. If the dashboard is accessed from
+        the mobile UI, it shows the activity of the current user, while if
+        accessed from another browser, it shows the activities of all the users,
+        identified by their IDs.<br>
+      </span></div>
+    <div style="text-align: left;">
+      <h2><span style="font-family: Verdana;">Preliminary setup</span></h2>
+      <p><span style="font-family: Verdana;">In this tutorial we concentrate on
+          running the web-server and dashboard backend, supposing that the AWS
+          configuration as described in the <a href="assignment1.html">Assignment
+            1 project</a> page has been completed.</span></p>
+      <h3><span style="font-family: Verdana;">Further AWS configuration<br>
+        </span></h3>
+      <h4><span style="font-family: Verdana;">Entering AWS credentials in the
+          mobile UI script</span></h4>
+      <p><span style="font-family: Verdana;">In addition to the basic AWS
+          setting required for all the other projects, this project requires to
+          set, in the <em>main.js</em> file, the following values:</span></p>
+      <ul>
+        <li><span style="font-family: Verdana;"><em>hostname </em>(line 4), to
+            the AWS IoT device endpoint to be targeted with MQTT.</span></li>
+        <li><span style="font-family: Verdana;"><em>IdentityPoolId </em>(line
+            11), to the Cognito Identity Pool ID used to retrieve credentials on
+            mobile devices. Note that the Cognito Identity Pool ID has to have a
+            role allowing the full access to AWS IoT resources.</span></li>
+      </ul>
+      <h4><span style="font-family: Verdana;">Deploying the AWS Lambda function
+          for cloud-based activity recognition</span></h4>
+      <p><span style="font-family: Verdana;">In order for the cloud-based
+          activity recognition to work, you need to deploy an AWS Lambda
+          function with the code provided in the <code>aws/lambda_function.py</code>
+          file. Such function has to be triggered by AWS IoT upon receiving
+          messages on the <em>station/mobile_sensor_values </em>topic. The SQL
+          rule for this is <strong style="font-weight: 700;">SELECT * FROM
+            'stations/mobile_sensor_values'.</strong></span></p>
+      <h3><span style="font-family: Verdana;">Dashboard backend, dashboard and
+          mobile UI</span></h3>
+      <h4><span style="font-family: Verdana;">Dashboard and mobile UI<br>
+        </span></h4>
+      <p><span style="font-family: Verdana;">The dashboard and the mobile UI are
+          web applications, so they need to be served by a web server. It is
+          sufficient to deploy a web server, with HTTPS enabled (it is required
+          to enable Generic Sensor API support), pointing with an alias to the <em>htdocs</em>
+          folder of the project. Then both dashboard and mobile UI will be
+          accessible at <code>https://&lt;webserveraddress&gt;/mobile_sensors/index.html
+            </code>(mobile UI) and<code> </code><code>&lt;webserveraddress&gt;/mobile_sensors/dashboard.php
+            </code>(dashboard). In my case, I used XAMPP for Windows, that sets
+          up HTTPS upon installation, although with a self-signed certificate
+          that generates an alert in modern browsers. For experimentation
+          purposes, in a local network setup, it is sufficient to dismiss the
+          alert and proceed with page visualization, although this would not be
+          safe if exposing the web pages to Internet.</span></p>
+      <h4><span style="font-family: Verdana;">Dashboard backend</span></h4>
+      <p><span style="font-family: Verdana;">The dashboard backend needs to be
+          running in order to subscribe to the AWS IoT MQTT topic and receive
+          virtual station values as they are published. To launch the backend it
+          is sufficient to enter the <code>python_mobile_dash_backend </code>folder
+          and launch, the Python script using the Python interpreter with the
+          command <code>python mobile_dash_backend_aws.py</code> (assuming <code>python</code>
+          is the alias of the Python 3.7 interpreter<code>, </code>this depends
+          on your system configuration. The backend has successfully started
+          when it connects to the remote broker, subscribes to the topic and
+          then remains waiting for messages.</span></p>
+      <div style="text-align: center;"><span style="font-family: Verdana;"><img
+            src="web_images/mobile_dash_backend_started.png" alt=""></span></div>
+      <div style="text-align: left;"><span style="font-family: Verdana;"><br>
+        </span></div>
+      <div style="text-align: left;"><span style="font-family: Verdana;">From
+          this point onwards in the tutorial, we'll assume that:</span></div>
+      <div style="text-align: left;">
+        <ul>
+          <li><span style="font-family: Verdana;">JavaScript AWS configuration
+              has been completed;</span></li>
+          <li><span style="font-family: Verdana;">Lambda function has been
+              correctly deployed;</span></li>
+          <li><span style="font-family: Verdana;">Backend and web-server are
+              running.</span></li>
+        </ul>
+        <h2><span style="font-family: Verdana;">Running the system</span></h2>
+        <h3><span style="font-family: Verdana;">Mobile UI</span></h3>
+        <p><span style="font-family: Verdana;">Using an Android mobile phone, it
+            is possible to access the UI at its address. The UI is very simple:</span></p>
+        <div style="text-align: center;"><img src="web_images/mobile_ui_basic.png"
+            alt=""></div>
+        <div style="text-align: left;"><span style="font-family: Verdana;"><br>
+          </span></div>
+        <div style="text-align: left;"><span style="font-family: Verdana;">Upon
+            accessing the page, the user is simply required to provide an ID
+            (that is optional, if left empty will be filled with a random
+            string) and to choose between <em>edge-based </em>or <em>cloud-based</em>
+            activity recognition. In both cases, what is shown choosing whatever
+            of the two possibilities, is the current user activity, based on
+            sensor values:</span></div>
+        <div style="text-align: left;"><span style="font-family: Verdana;"><br>
+          </span></div>
+        <div style="text-align: center;"><img src="web_images/mobile_ui_standing.png"
+            alt=""></div>
+        <div style="text-align: left;"><span style="font-family: Verdana;"><br>
+          </span></div>
+        <div style="text-align: left;"><span style="font-family: Verdana;">Once
+            the detection has started, the user can either stop the recognition,
+            using the <em>Stop</em> button, or go to the dashboard, from which
+            it would be able to analyze its own activities:</span></div>
+        <div style="text-align: left;"><span style="font-family: Verdana;"><br>
+          </span></div>
+        <div style="text-align: center;"><img src="web_images/mobile_ui_iot_dash_all.png"
+            alt=""></div>
+        <div style="text-align: center;"><br>
+        </div>
+        <div style="text-align: center;"><img src="web_images/mobile_ui_iot_dash_last_hour.png"
+            alt=""></div>
+        <div style="text-align: center;"><br>
+        </div>
+        <div style="text-align: left;"><br>
+          <h4><span style="font-family: Verdana;">Operational differences
+              between edge and cloud-based recognition</span></h4>
+          <h5><span style="font-family: Verdana;">Edge-based recognition</span></h5>
+        </div>
+        <div style="text-align: left;"><span style="font-family: Verdana;">When
+            choosing edge-based recognition, the type of activity is detected on
+            the mobile device itself, through the JavaScript running in its
+            browser. The results of the recognition (the state) are published on
+            AWS IoT, to be collected by the dashboard backend and shown on the
+            dashboard.</span><br>
+          <h5><span style="font-family: Verdana;">Cloud-based recognition</span></h5>
+        </div>
+        <div style="text-align: left;"><span style="font-family: Verdana;"></span><span
+            style="font-family: Verdana;">When choosing cloud-based recognition,
+            the type of activity is detected remotely, by the AWS Lambda
+            deployed function. More in detail, the JavaScript running on the
+            mobile phone sends raw sensor values to AWS IoT. These values, are
+            then redirected to the Lambda function, which, upon calculating it,
+            publishes the new state to AWS IoT. From there, the state is
+            propagated back to the mobile phone, to be shown in the mobile UI,
+            and to the dashboard backend, to be shown on the dashboard.</span></div>
+      </div>
+      <div style="text-align: left;">
+        <h3><span style="font-family: Verdana;">Dashboard (external access)</span></h3>
+        <p><span style="font-family: Verdana;">If the dashboard is accessed from
+            outside the mobile UI session, for example from a desktop PC, it
+            allows to access the activity of all the users of the system through
+            their ID. In this case, when requiring the latest values received,
+            the user is required to choose a specific ID, while when requiring
+            the values of the last hour for a specific sensor, these values are
+            shown for all the user IDs.</span></p>
+      </div>
+      <p><span style="font-family: Verdana;"><br>
+        </span></p>
+    </div>
+    <p><span style="font-family: Verdana;"><br>
+      </span></p>
+    <p> </p>
+    <span style="font-family: Verdana;"> </span>
+  </body>
+</html>
