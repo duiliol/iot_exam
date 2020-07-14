@@ -3,13 +3,25 @@
     if(isset($_POST["view"])){
         $_SESSION["view"]=$_POST["view"];
     }
+    if(isset($_POST["fromUI"]))
+    {
+        $_SESSION["fromUI"]=$_POST["fromUI"];
+    }
     if(isset($_POST["station"])){
-        $_SESSION["station"]=$_POST["station"];
+        if($_POST["station"]!=""){
+            $_SESSION["station"]=$_POST["station"];
+        }
+        else
+        {
+            header("location: index.html");
+        }
         unset($_SESSION["sensor"]);
     }
     if(isset($_POST["sensor"])){
         $_SESSION["sensor"]=$_POST["sensor"];
-        unset($_SESSION["station"]);
+        if(!isset($_SESSION["fromUI"])){
+            unset($_SESSION["station"]);
+        }
     }
 
     print("<html>");
@@ -69,7 +81,11 @@
             print("<div id=\"bottom-only-border\">");
             print("<h3>Selected station: </h3>");
                 print("<form action=\"dashboard.php\" method=\"post\">");
-                print("<select name=\"station\">");
+                print("<select name=\"station\"");
+                if(isset($_SESSION["fromUI"]) && isset($_SESSION["station"])){
+                    print(" disabled");
+                }
+                print(">");
                 for ($i = 0; $i < count($stations); $i++) {
                     print("<option value=\"$stations[$i]\"");
                     if(isset($_SESSION["station"]) and ($_SESSION["station"])==$stations[$i]){
@@ -156,8 +172,16 @@
                             $json_decoded_line = json_decode($line, true);
                             $date = strtotime($json_decoded_line["time"]);
                             $now = mktime();
-                            if($now - $date <= 3600){
-                                array_push($last_hour_values,$json_decoded_line);
+                            
+                            if(isset($_SESSION["fromUI"]) && isset($_SESSION['station'])){
+                                if($now - $date <= 3600 && $json_decoded_line["id"] == $_SESSION['station']){
+                                    array_push($last_hour_values,$json_decoded_line);
+                                }
+                            }
+                            else{
+                                if($now - $date <= 3600){
+                                    array_push($last_hour_values,$json_decoded_line);
+                                }
                             }
                         }
                         for($i = count($last_hour_values) - 1; $i >= 0; $i--){

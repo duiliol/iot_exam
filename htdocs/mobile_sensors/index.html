@@ -20,6 +20,13 @@
         </div>
         <h2 id="activityHeader"></h2>
         <h3 id="activity"></h3>
-        <button name="stop" onclick="stop()">Stop</button>
+        <button id="stop" onclick="stop()">Stop</button>
+        <br/>
+        <br/>
+        <form method="post" id="dashboard" action="dashboard.php">
+            <input type="hidden" id="station" name="station" value="">
+            <input type="hidden" name="fromUI" value="true">
+            <input type="submit" value="Go to dashboard">
+        </form>
     </body>
 </html>

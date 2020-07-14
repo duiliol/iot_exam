@@ -1,6 +1,9 @@
 import base64
 import json
+import os
+import sys
 import time
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from datetime import datetime
 from ttn_mqtt_bridge.ttn_bridge_conf import *
 from aws.aws_config import *

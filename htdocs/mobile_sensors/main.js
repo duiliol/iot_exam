@@ -17,6 +17,22 @@ function randomString(length) {
     return Math.round((Math.pow(36, length + 1) - Math.random() * Math.pow(36, length))).toString(36).slice(1);
 }
 
+function send_data(servURL, method) {
+    method = method || "post"; // il metodo POST è usato di default
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", servURL);
+    for(var key in params) {
+        var hiddenField = document.createElement("input");
+        hiddenField.setAttribute("type", "hidden");
+        hiddenField.setAttribute("name", "station");
+        hiddenField.setAttribute("value", clientId);
+        form.appendChild(hiddenField);
+    }
+    document.body.appendChild(form);
+    form.submit();
+}
+
 // called when the client connects
 function onConnect() {
     // Once a connection has been made, make a subscription and send a message.
@@ -54,8 +70,9 @@ function mainEdge(){
     clientId = document.getElementById("mobile_id").value;
     if (clientId==""){
         clientId = randomString(16);
-        document.getElementById("mobile_id").value=clientId;
     }
+    document.getElementById("mobile_id").value=clientId;
+    document.getElementById("station").value=clientId;
     var date = new Date();
     var isotime = date.toISOString();
     document.getElementById("cloudButton").setAttribute("hidden","true");
@@ -112,8 +129,9 @@ function mainCloud() {
     clientId = document.getElementById("mobile_id").value;
     if (clientId==""){
         clientId = randomString(16);
-        document.getElementById("mobile_id").value=clientId;
     }
+    document.getElementById("mobile_id").value=clientId;
+    document.getElementById("station").value=clientId;
     var date = new Date();
     var isotime = date.toISOString();
     document.getElementById("edgeButton").setAttribute("hidden","true");
