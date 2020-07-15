@@ -10,6 +10,8 @@
     <span style="font-family: Verdana;"> </span>
     <h2><span style="font-family: Verdana;">RIOT-OS Virtual Environmental
         Stations publishing values to AWS IoT using MQTT-SN and MQTT</span></h2>
+    <h3><span style="font-family: Verdana;">Duilio Luca Bacocco</span></h3>
+    <p></p>
     <span style="font-family: Verdana;"> </span>
     <hr><span style="font-family: Verdana;"> </span>
     <p><span style="font-family: Verdana;">This assignment is an extension of
@@ -21,8 +23,7 @@
     <p><span style="font-family: Verdana;">The architecture implemented in this
         project can be represented as follows:</span></p>
     <span style="font-family: Verdana;"> </span>
-    <div style="text-align: center;"><span style="font-family: Verdana;"><img src="web_images/assignment_2_architecture.PNG"
-
+    <div style="text-align: center;"><span style="font-family: Verdana;"><img src="web_images/assignment_2_architecture.PNG"
           alt="" title="architecture"></span></div>
     <span style="font-family: Verdana;"> </span>
     <div style="text-align: center;"><span style="font-family: Verdana;"><br>
@@ -77,11 +78,8 @@
           system (in my case I used a VM), using the <code>./broker_mqtts
             rsmb.conf </code>command. <br>
         </span> </p>
-      <div style="text-align: center;"><span style="font-family: Verdana;"><img
-
-            src="web_images/mqttsn_broker_running.jpg" alt=""
-
-            title="mqttsn_running"></span></div>
+      <div style="text-align: center;"><span style="font-family: Verdana;"><img
+            src="web_images/mqttsn_broker_running.jpg" alt="" title="mqttsn_running"></span></div>
       <div style="text-align: justify;"><span style="font-family: Verdana;"><br>
         </span> </div>
       <div style="text-align: justify;"><span style="font-family: Verdana;">As
@@ -125,8 +123,7 @@
           the MQTT-SN to MQTT bridge initialized and waiting to receive messages
           from the RIOT stations.<br>
         </span></p>
-      <div style="text-align: center;"><span style="font-family: Verdana;"><img
-
+      <div style="text-align: center;"><span style="font-family: Verdana;"><img
             src="web_images/mqttsn_bridge_broker_running.jpg" alt="" title="bridge_broker_running"></span></div>
       <ul>
       </ul>
@@ -146,8 +143,7 @@
             EMCUTE_ID=Station-01</code></span></p>
       <p><span style="font-family: Verdana;">If the build is successful, the
           terminal will show the RIOT-OS prompt:</span></p>
-      <div style="text-align: center;"><img src="web_images/riot_os_started.jpg"
-
+      <div style="text-align: center;"><img src="web_images/riot_os_started.jpg"
           alt="" title="riot_os_prompt"></div>
       <div style="text-align: center;"><br>
       </div>
@@ -156,9 +152,8 @@
           the available (implemented) RIOT-OS system commands:</span></div>
       <div style="text-align: left;"><span style="font-family: Verdana;"><br>
         </span></div>
-      <div style="text-align: center;"><img src="web_images/riot_help.jpg"
-
-          alt="" title="riot_help"></div>
+      <div style="text-align: center;"><img src="web_images/riot_help.jpg" alt=""
+          title="riot_help"></div>
       <div style="text-align: left;"><span style="font-family: Verdana;"><br>
         </span></div>
       <div style="text-align: left;"><span style="font-family: Verdana;">In the
@@ -187,8 +182,7 @@
               textual identifier for the station, transmitted along with MQTT
               messages (eventually can be the same as EMCUTE_ID),<em> </em>while
               <em>broker_address</em> and <em>broker_port </em>are the MQTT-SN
-              broker address and port (in our case they are respectively </span></span><span
-
+              broker address and port (in our case they are respectively </span></span><span
             style="font-family: Verdana;"><code><span>fec0:affe::1 </span></code><span>and
               <code>1885</code>. For example we can start node activity by
               typing </span></span><span style="font-family: Verdana;"><code>init_start
@@ -199,13 +193,11 @@
               broker receiving messages and the bridge forwarding them to AWS
               IoT. <br>
             </span></span></p>
-        <div style="text-align: center;"><img src="web_images/riot_os_transmitting.jpg"
-
+        <div style="text-align: center;"><img src="web_images/riot_os_transmitting.jpg"
             alt="" title="riot_os_transmitting"></div>
         <div style="text-align: center;"><br>
         </div>
-        <div style="text-align: center;"><img src="web_images/mqttsn_bridge_broker_running2.jpg"
-
+        <div style="text-align: center;"><img src="web_images/mqttsn_bridge_broker_running2.jpg"
             alt="" title="bridge_broker_receiving"></div>
         <div style="text-align: center;"><br>
         </div>
