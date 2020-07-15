@@ -1,14 +1,14 @@
 var state = "STANDING";
 var i=0;
 var sensor;
-var hostname = "a30kelu6gvu9wg-ats.iot.us-east-1.amazonaws.com";
+var hostname = "";
 var clientId = "MOBILE-TEST";
 var state_topic = "stations/mobile_sensor_states";
 var raw_data_topic = "stations/mobile_sensor_values";
 
 AWS.config.region = 'us-east-1'; // Regione
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: 'us-east-1:d539fb81-4bd2-4acc-8957-6384981e64a4',
+    IdentityPoolId: '',
 });
 
 AWS.config.credentials.get(function () {});
