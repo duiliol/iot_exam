@@ -4,9 +4,11 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>IoT 2019/2020 Exam assignments Tutorials - Home</title>
   </head>
-  <body><code></code>
+  <body><span style="font-family: Verdana;"><code></code> </span>
     <h1><span style="font-family: Verdana;">IoT 2019/2020 Exam Assignments
         Tutorials</span></h1>
+    <h2><span style="font-family: Verdana;">Duilio Luca Bacocco<br>
+      </span></h2>
     <span style="font-family: Verdana;"> </span>
     <hr><span style="font-family: Verdana;"> </span>
     <p><span style="font-family: Verdana;">The tutorials listed in this page
@@ -17,21 +19,18 @@
         implemented is available on <a href="https://github.com/duiliol/iot_exam">GitHub</a>.</span></p>
     <span style="font-family: Verdana;"> </span>
     <ul>
-      <span style="font-family: Verdana;"> </span>
       <li><span style="font-family: Verdana;"><a href="assignment1.html"><b>Assignment
               1</b></a>: this assignment required to create a cloud-based IoT
           system collecting information from a <em>set of virtual environmental
             sensors</em> using the MQTT protocol. Data collected from the
           sensors should be displayed by a <em>simple web site</em>.<br>
         </span> </li>
-      <span style="font-family: Verdana;"> </span>
       <li><span style="font-family: Verdana;"><a href="assignment2.html"><b>Assignment
               2</b></a>: this assignment is an extension of Assignment 1, where
           the same components (dashboard and backend) are used to collect and
           display data from a set of virtual environmental stations that are
           built over <i>RIOT-OS</i> and transmit using the <i>MQTT-SN</i>
           protocol.</span></li>
-      <span style="font-family: Verdana;"> </span>
       <li><span style="font-family: Verdana;"><a href="assignment3.html"><b>Assignment
               3</b></a>: this assignment is another extension of the projects
           for Assignment 1 and 2, where the same dashboard and backend
@@ -39,7 +38,6 @@
           environmental stations that are built over <i>RIOT-OS</i>, are
           deployed on the <i>FIT/IoT Lab</i> testbed and transmit the generated
           values using <i>LoRaWAN</i> by <i>TheThingsNetwork</i>.</span></li>
-      <span style="font-family: Verdana;"> </span>
       <li><span style="font-family: Verdana;"><a href="assignment4.html"><b>Assignment
               4</b></a>: this assignment extends the IoT platform designed for
           the previous assignments by introducing <i>crowd-sensing</i> support.
@@ -52,7 +50,9 @@
           the one for the virtual environmental sensors shows the activity of
           the users. </span></li>
     </ul>
-    <p><br>
-    </p>
+    <span style="font-family: Verdana;"> </span>
+    <p><span style="font-family: Verdana;"><br>
+      </span> </p>
+    <span style="font-family: Verdana;"> </span>
   </body>
 </html>
