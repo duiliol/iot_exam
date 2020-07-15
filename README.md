@@ -3,7 +3,8 @@ This repository contains all the code implementing the assignments for the exam 
 Sapienza University of Rome (course site: http://ichatz.me/Site/InternetOfThings2020).
 
 The exam required the completion of four assignments, briefly described as follows (for details about the single 
-components please refer to the README in the folder of each component:
+components please refer to the README in the folder of each component. Tutorials are available at 
+<a href="https://duiliol.github.io/iot_exam/">GitHub Pages website</a> of the project.
 <ul>
     <li><b><a href="http://ichatz.me/Site/InternetOfThings2020-Assignment1">Assignment 1</a>: </b> this assignment 
     required to create a cloud-based IoT system collecting information from <em>
