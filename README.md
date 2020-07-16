@@ -21,7 +21,7 @@ components please refer to the README in the folder of each component. Tutorials
     local MQTT broker or AWS IoT.
     <br/><br/></li>
     </ul></li>
-    <li><b><a href="http://ichatz.me/Site/InternetOfThings2020-Assignment2">Assignment 2</a>:</b> this assignment 
+    <li><b><a href="http://ichatz.me/Site/InternetOfThings2020-Assignment2">Assignment 2</a> <a href="https://www.linkedin.com/pulse/riot-os-virtual-environmental-stations-publishing-values-bacocco">(tutorial)</a>: </b> this assignment 
     is an extension of Assignment 1, where the same components (dashboard and backend) are used to collect and display 
     data from a <em>set of virtual environmental stations </em> that are built over RIOT-OS and transmit using the 
     MQTT-SN protocol. <br/><br/>All the material regarding this assignment is contained within the following folders:
@@ -32,7 +32,7 @@ components please refer to the README in the folder of each component. Tutorials
         topic on the broker, to receive MQTT-SN messages and relay them to a local MQTT broker or AWS IoT.</li>
     </ul> 
     <br/><br/></li>
-    <li><b><a href="http://ichatz.me/Site/InternetOfThings2020-Assignment3">Assignment 3</a>:</b> this assignment
+    <li><b><a href="http://ichatz.me/Site/InternetOfThings2020-Assignment3">Assignment 3</a> <a href="https://www.linkedin.com/pulse/riot-os-virtual-environmental-stations-running-nodes-values-bacocco">(tutorial)</a>: </b> this assignment
     is another extension of the projects for Assignment 1 and 2, where the same dashboard and backend components are
     used to collect and display data from a <em>set of virtual environmental stations </em> that are built over RIOT-OS,
     are deployed on the FIT/IoT Lab testbed and transmit the generated values using LoRaWAN by TheThingsNetwork.
@@ -44,7 +44,7 @@ components please refer to the README in the folder of each component. Tutorials
         a local MQTT broker or AWS IoT.</li>
     </ul>
     <br/><br/></li>
-    <li><b><a href="http://ichatz.me/Site/InternetOfThings2020-Assignment4">Assignment 4</a>: </b> this assignment 
+    <li><b><a href="http://ichatz.me/Site/InternetOfThings2020-Assignment4">Assignment 4</a> <a href="https://www.linkedin.com/pulse/crowd-sensing-application-based-html-5-running-mobile-bacocco">(tutorial)</a>: </b> this assignment 
     extends the IoT platform designed for the previous assignments by introducing crowd-sensing support. In particular, 
     this assignment required to implement an HTML5 application that could support a user's activity detection (using 
     the sensors integrated in mobile phones) and 
